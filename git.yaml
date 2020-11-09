@@ -1,0 +1,10 @@
+---
+- name: This sets up an httpd webserver
+  hosts: local	
+  become: true	
+  become_user: root	
+  tasks:
+  - name: Install git packages 
+    yum:
+      name:	
+      state: present
