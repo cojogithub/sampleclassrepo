@@ -1,0 +1,37 @@
+1. Sudo yum install git -y  
+2. git - - version 
+3. git config --global user.email "you@youremail.com"
+4. git config --global user.name "Your Name"
+5. Clone  $ git clone the https url of the repo
+6. To add to staging $ git add  filename or –all (to add all files)
+7. To commit $ git commit -m “The message in btw the qoutes”
+8. To upload your changes $ git push 
+9. To refresh your local repo $ git pull 
+
+- Installed Ansible:
+
+sudo amazon-linux-extras install ansible2
+
+we checked for the presence of ansible by running 
+ansible --version 
+
+
+1) Ansible ad-hoc command
+2)  Ansible Playbook
+3) Ansible roles 
+Ansible playbook is a collation of commands 
+Ansible role is a collection of playbooks 
+
+Ansible playbook is a yaml document 
+
+YAML: Yaml Aint Markup Language 
+
+
+Ansible Inventory:
+Inventory is the ansible file containing the hosts to be addressed 
+
+Static Inventory 
+Dynamic Inventory 
+
+
+

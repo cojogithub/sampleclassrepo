@@ -1,0 +1,56 @@
+#!/bin/bash
+#STEP BY STEP HOW TO INSTALL JBOSS
+
+clear
+
+sudo yum install java-1.8.0-openjdk-devel
+
+java --version
+
+export WILDFLY_RELEASE="18.0.1"
+
+wget https://download.jboss.org/wildfly/$WILDFLY_RELEASE.Final/wildfly-$WILDFLY_RELEASE.Final.tar.gz
+
+tar xvf wildfly-$WILDFLY_RELEASE.Final.tar.gz
+
+sudo mv wildfly-$WILDFLY_RELEASE.Final/ /opt/wildfly
+
+sudo groupadd --system wildfly
+
+sudo useradd -s /sbin/nologin --system -d /opt/wildfly  -g wildfly wildfly
+
+sudo mkdir /etc/wildfly
+
+sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf /etc/wildfly/
+sudo cp /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service /etc/systemd/system/
+sudo cp /opt/wildfly/docs/contrib/scripts/systemd/launch.sh /opt/wildfly/bin/
+sudo chmod +x /opt/wildfly/bin/launch.sh
+
+sudo chown -R wildfly:wildfly /opt/wildfly
+
+sudo systemctl daemon-reload
+
+sudo semanage fcontext  -a -t bin_t  "/opt/wildfly/bin(/.*)?"
+sudo restorecon -Rv /opt/wildfly/bin/
+
+sudo systemctl start wildfly
+sudo systemctl enable wildfly
+
+systemctl status wildfly
+
+sudo /opt/wildfly/bin/add-user.sh
+
+cat >> ~/.bashrc <<EOF
+export WildFly_BIN="/opt/wildfly/bin/"
+export PATH=\$PATH:\$WildFly_BIN                                                                                                                   
+EOF
+
+source ~/.bashrc
+
+jboss-cli.sh --connect
+
+sudo systemctl restart wildfly
+
+Here is the link to get the installation
+
+https://computingforgeeks.com/how-to-install-wildfly-jboss-on-rhel-centos/
