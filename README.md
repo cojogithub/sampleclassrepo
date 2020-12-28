@@ -1,6 +1,6 @@
 # Ansible-Sample-Application-Deployment
 This repository will contain sample code to deploy the sample application on linux instance
-
+This will contain how to edit templates for cloudformation
 
 
 
